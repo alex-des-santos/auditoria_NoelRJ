@@ -4,7 +4,7 @@
 [![Python 3.13+](https://img.shields.io/badge/python-3.13+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Aplicação Streamlit profissional para detecção de fraude em votações online, desenvolvida para auditar a votação do "Melhor Papai Noel do Rio de Janeiro 2025".
+Aplicação Streamlit profissional para detecção de fraude em votações online, desenvolvida para auditar uma votação de "Melhor Papai Noel" (dados anonimizados).
 
 Este projeto demonstra técnicas avançadas de análise de dados, detecção de anomalias e visualização interativa para identificar padrões de manipulação automatizada (bots) em sistemas de votação online.
 

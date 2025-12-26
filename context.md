@@ -27,11 +27,11 @@ As seguintes regras de validação foram aplicadas:
 
 | Posição | Candidato | Votos | Percentual |
 |---------|-----------|-------|------------|
-| 1º | MÁRIO ROQUE – SHOPPING METROPOLITANO BARRA | 1.858 | 40,68% |
-| 2º | MARCUS SOUZA – PÁTIO ALCANTRA | 946 | 20,71% |
-| 3º | CÉSAR FERNANDO – SIDER SHOPPING | 821 | 17,98% |
+| 1º | M**** R**** – SHOPPING M***********O B***A | 1.858 | 40,68% |
+| 2º | M***** S**** – PÁTIO A******** | 946 | 20,71% |
+| 3º | C**** F******* – SIDER SHOPPING | 821 | 17,98% |
 
-> **Nota de qualidade**: Foram identificadas duas variações para o candidato "Saymon" (**"SAYMON CLAUS..."** e **"SAYMON ..."**). Caso sejam o mesmo candidato, o total combinado seria 211 votos, sem impacto no ranking dos 3 primeiros.
+> **Nota de qualidade**: Foram identificadas duas variações para um candidato (**"SAYMON CLAUS..."** e **"SAYMON ..."**). Caso sejam o mesmo candidato, o total combinado seria 211 votos, sem impacto no ranking dos 3 primeiros.
 
 ## Padrões de Manipulação Detectados
 
@@ -48,7 +48,7 @@ Foi identificado um padrão massivo de emails seguindo o formato:
 Nos **4.567 votos válidos** após regras básicas:
 
 * **1.585 emails** (34,7%) seguem este padrão
-* **99,75%** desses votos concentram-se em **MÁRIO ROQUE**
+* **99,75%** desses votos concentram-se em **Candidato A** (M**** R****)
 
 Esta concentração extrema é incompatível com votação orgânica e sugere **geração automatizada de identidades** (lista restrita de nomes + sufixo numérico aleatório). Este comportamento é característico de ataques automatizados a formulários online.
 
@@ -60,7 +60,7 @@ Esta concentração extrema é incompatível com votação orgânica e sugere **
 * 21/12: 3.094
 * 22/12: 2.118
 
-Em todos estes dias, ~100% dos votos com o padrão foram para "MÁRIO ROQUE".
+Em todos estes dias, ~100% dos votos com o padrão foram para o **Candidato A**.
 
 ### Padrão Secundário: Pool Limitado de Prefixos
 
@@ -70,8 +70,8 @@ Análise dos emails únicos revela concentração em poucos prefixos repetidos d
 
 Foram detectadas **1.446 submissões duplicadas** por email, mesmo excluindo os dias 20-22. Distribuição:
 
-* Maioria das duplicatas: **SAYMON CLAUS** (788 votos)
-* Caso extremo: **1 único email com 1.102 votos**, todos para **SAYMON CLAUS**
+* Maioria das duplicatas: **Candidato D** (788 votos)
+* Caso extremo: **1 único email com 1.102 votos**, todos para o **Candidato D**
 
 Este volume de repetição é incompatível com interação manual humana, indicando automação (script ou pressionamento automatizado de teclas).
 
@@ -93,9 +93,9 @@ Para uma apuração defensável, é necessário tratar o padrão `nome.sobrenome
 
 | Posição | Candidato | Votos | Percentual |
 |---------|-----------|-------|------------|
-| 1º | MÁRIO ROQUE | 1.858 | 40,68% |
-| 2º | MARCUS SOUZA | 946 | 20,71% |
-| 3º | CÉSAR FERNANDO | 821 | 17,98% |
+| 1º | Candidato A | 1.858 | 40,68% |
+| 2º | Candidato B | 946 | 20,71% |
+| 3º | Candidato C | 821 | 17,98% |
 
 ### Cenário B: Remove Padrão `nome.sobrenome###@gmail.com`
 
@@ -103,9 +103,9 @@ Para uma apuração defensável, é necessário tratar o padrão `nome.sobrenome
 
 | Posição | Candidato | Votos | Percentual |
 |---------|-----------|-------|------------|
-| 1º | MARCUS SOUZA | 944 | 31,66% |
-| 2º | CÉSAR FERNANDO | 820 | 27,50% |
-| 3º | MÁRIO ROQUE | 277 | 9,29% |
+| 1º | Candidato B | 944 | 31,66% |
+| 2º | Candidato C | 820 | 27,50% |
+| 3º | Candidato A | 277 | 9,29% |
 
 ### Cenário C: Conservador (Remove Padrão + Outros Suspeitos)
 
@@ -113,9 +113,9 @@ Para uma apuração defensável, é necessário tratar o padrão `nome.sobrenome
 
 | Posição | Candidato | Votos | Percentual |
 |---------|-----------|-------|------------|
-| 1º | MARCUS SOUZA | 889 | 31,14% |
-| 2º | CÉSAR FERNANDO | 792 | 27,74% |
-| 3º | MÁRIO ROQUE | 274 | 9,60% |
+| 1º | Candidato B | 889 | 31,14% |
+| 2º | Candidato C | 792 | 27,74% |
+| 3º | Candidato A | 274 | 9,60% |
 
 ## Critérios de Detecção de Comportamento Automatizado
 
@@ -136,8 +136,8 @@ O Gmail ignora pontos no prefixo do endereço ("dot blindness"), ou seja, `nome.
 
 A aplicação do **Cenário B** (recomendado) resulta em:
 
-* **Mudança completa do vencedor**: MÁRIO ROQUE cai de 1º (40,68%) para 3º (9,29%)
-* **Inversão do ranking**: MARCUS SOUZA assume 1º lugar com 31,66%
+* **Mudança completa do vencedor**: Candidato A cai de 1º (40,68%) para 3º (9,29%)
+* **Inversão do ranking**: Candidato B assume 1º lugar com 31,66%
 
 Esta inversão dramática demonstra o **impacto massivo e determinante** do padrão de emails sintéticos no resultado da votação.
 

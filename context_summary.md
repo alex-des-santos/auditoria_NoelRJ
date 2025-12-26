@@ -1,8 +1,8 @@
-# Contexto da Auditoria - Oscar Noel RJ 2025
+# Contexto da Auditoria - Votação de Papai Noel
 
 ## Resumo Executivo
 
-Esta auditoria foi realizada sobre uma votação online para escolher o "Melhor Papai Noel do Rio de Janeiro 2025". A análise dos **14.790 votos** coletados entre 11/12/2025 e 26/12/2025 revelou **sinais massivos de manipulação automatizada** que comprometem a integridade do resultado.
+Esta auditoria foi realizada sobre uma votação online para escolher o "Melhor Papai Noel" (dados anonimizados). A análise dos **14.790 votos** coletados entre 11/12/2025 e 26/12/2025 revelou **sinais massivos de manipulação automatizada** que comprometem a integridade do resultado.
 
 ## Dados Analisados
 
@@ -61,7 +61,7 @@ O pico de **3.668 votos em 21/12** representa **24,8% de todo o dataset**, com *
 
 Quando analisamos os votos com padrão `nome.sobrenome###@gmail.com`:
 
-- **MÁRIO ROQUE - SHOPPING METROPOLITANO BARRA**: 99,75% dos votos
+- **Candidato A**: 99,75% dos votos
 - Outros 11 candidatos: 0,25% dos votos (residual)
 
 Esta concentração é **estatisticamente impossível** em votação orgânica e indica campanha automatizada focada.
@@ -69,7 +69,7 @@ Esta concentração é **estatisticamente impossível** em votação orgânica e
 ### 4. Repetição Patológica de Emails
 
 Foram detectados casos extremos de repetição:
-- **1 email votou 1.102 vezes** (todos para SAYMON CLAUS)
+- **1 email votou 1.102 vezes** (todos para Candidato D)
 - **1.446 votos duplicados** mesmo após remover dias 20-22
 - Timing entre votos duplicados é humanamente impossível (< 1 segundo)
 
@@ -94,24 +94,24 @@ Foram detectados casos extremos de repetição:
 
 | Posição | Candidato | Votos | % |
 |---------|-----------|-------|---|
-| 1º | MÁRIO ROQUE - SHOPPING METROPOLITANO BARRA | 1.858 | 40,68% |
-| 2º | MARCUS SOUZA - PÁTIO ALCANTRA | 946 | 20,71% |
-| 3º | CÉSAR FERNANDO - SIDER SHOPPING | 821 | 17,98% |
+| 1º | Candidato A | 1.858 | 40,68% |
+| 2º | Candidato B | 946 | 20,71% |
+| 3º | Candidato C | 821 | 17,98% |
 
 ### Cenário B: Remove Padrão Suspeito (nome.sobrenome###)
 **2.982 votos válidos**
 
 | Posição | Candidato | Votos | % |
 |---------|-----------|-------|---|
-| 1º | **MARCUS SOUZA - PÁTIO ALCANTRA** | 944 | 31,66% |
-| 2º | **CÉSAR FERNANDO - SIDER SHOPPING** | 820 | 27,50% |
-| 3º | **MÁRIO ROQUE - SHOPPING METROPOLITANO BARRA** | 277 | 9,29% |
+| 1º | **Candidato B (M***** S*****)** | 944 | 31,66% |
+| 2º | **Candidato C (C**** F*******)** | 820 | 27,50% |
+| 3º | **Candidato A (M**** R****)** | 277 | 9,29% |
 
 ### ⚠️ Mudança Crítica
 
 O vencedor **muda completamente** entre os cenários:
-- **Cenário A**: MÁRIO ROQUE com 40,68%
-- **Cenário B**: MÁRIO ROQUE cai para **3º lugar com 9,29%**
+- **Cenário A**: Candidato A com 40,68%
+- **Cenário B**: Candidato A cai para **3º lugar com 9,29%**
 
 Esta inversão dramática confirma que o padrão suspeito teve **impacto massivo e determinante** no resultado.
 
