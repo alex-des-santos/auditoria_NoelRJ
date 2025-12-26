@@ -41,6 +41,41 @@ def _load_context(path: str) -> str:
     return load_context_markdown(path)
 
 
+def _censor_name(name: str) -> str:
+    """
+    Censura nomes de candidatos para anonimização.
+    Mantém primeira letra de cada palavra e substitui demais por asteriscos.
+    """
+    import re
+
+    # Split by common separators (space, dash)
+    parts = re.split(r'(\s*-\s*|\s+)', name)
+    censored_parts = []
+
+    for part in parts:
+        # Keep separators as-is
+        if re.match(r'^\s*-\s*$|^\s+$', part):
+            censored_parts.append(part)
+            continue
+
+        # Split into words
+        words = part.split()
+        censored_words = []
+
+        for word in words:
+            if len(word) <= 2:
+                # Keep very short words
+                censored_words.append(word)
+            else:
+                # First letter + asterisks for rest
+                censored = word[0] + '*' * (len(word) - 1)
+                censored_words.append(censored)
+
+        censored_parts.append(' '.join(censored_words))
+
+    return ''.join(censored_parts)
+
+
 def main() -> None:
     st.set_page_config(page_title="Auditoria — Oscar Noel RJ 2025", layout="wide")
     st.title("Auditoria — Oscar Noel RJ 2025")
@@ -131,6 +166,10 @@ def main() -> None:
     )
 
     raw = _load_raw(csv_path)
+
+    # Apply name censorship to the raw data
+    raw["choice"] = raw["choice"].apply(_censor_name)
+
     artifacts = build_audit_artifacts(raw, cfg)
 
     # Apply rules based on selected scenario
@@ -178,10 +217,14 @@ def main() -> None:
         top.columns = ["choice", "votes"]
         top["share"] = top["votes"] / top["votes"].sum() if len(top) else 0.0
 
+        # Format share as percentage
+        top_display = top.head(12).copy()
+        top_display["share"] = top_display["share"].apply(lambda x: f"{x*100:.2f}%")
+
         c1, c2 = st.columns([1.2, 1.0])
         with c1:
             st.markdown("**Ranking (top 12)**")
-            st.dataframe(top.head(12), width="stretch")
+            st.dataframe(top_display, width="stretch")
         with c2:
             fig = px.pie(
                 top.head(8),
