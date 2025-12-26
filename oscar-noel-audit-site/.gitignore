@@ -1,0 +1,7 @@
+# Private/raw data (do NOT commit)
+data/private/
+*.csv
+
+# OS / editor
+.DS_Store
+.vscode/

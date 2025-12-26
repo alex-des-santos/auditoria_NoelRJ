@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Auditoria — Oscar Noel RJ 2025</title>
+  <meta name="description" content="Página de auditoria/EDA para votação do melhor Papai Noel do RJ (Oscar Noel 2025)." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.30.0/plotly.min.js"></script>
+</head>
+<body>
+  <header class="container header">
+    <div>
+      <h1>Auditoria de Votação — Oscar Noel RJ 2025</h1>
+      <p class="subtitle">EDA + auditoria por heurísticas para detectar sinais de automação e distorção do resultado.</p>
+    </div>
+    <nav class="nav">
+      <a href="#metodologia">Metodologia</a>
+      <a href="#resultados">Resultados</a>
+      <a href="#anomalias">Anomalias</a>
+      <a href="#recomendacoes">Recomendações</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="grid cards" id="resumo">
+      <div class="card">
+        <div class="card-title">Votos válidos (Cenário A)</div>
+        <div class="card-value" id="kpiTotalA">—</div>
+        <div class="card-footnote">Regras do organizador: exclui 20–22/dez + dedupe por email.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Votos válidos (Cenário B)</div>
+        <div class="card-value" id="kpiTotalB">—</div>
+        <div class="card-footnote">Cenário A + remove padrão suspeito nome.sobrenome###@gmail.com.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Votos válidos (Cenário C)</div>
+        <div class="card-value" id="kpiTotalC">—</div>
+        <div class="card-footnote">Cenário B + remove outros sinais menores (domínios/locais suspeitos).</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Sinal principal</div>
+        <div class="card-value">Identidades sintéticas</div>
+        <div class="card-footnote">Template repetido de email com sufixo numérico e concentração extrema de voto.</div>
+      </div>
+    </section>
+
+    <section id="metodologia">
+      <h2>Metodologia</h2>
+      <div class="panel">
+        <h3>Regras do organizador</h3>
+        <ul>
+          <li>Remover votos em 20/12, 21/12 e 22/12.</li>
+          <li>Remover duplicatas por email (mantém o primeiro envio).</li>
+          <li>Remover emails com padrão de bot (ver cenários B/C).</li>
+        </ul>
+
+        <h3>Tipos de análise utilizados</h3>
+        <ul>
+          <li><strong>Limpeza e padronização:</strong> normalização de email, parsing de data/hora, remoção de dias proibidos.</li>
+          <li><strong>Deduplicação determinística:</strong> email exato → 1 voto (controle básico de spam).</li>
+          <li><strong>Detecção heurística por padrões:</strong> regex para templates de email (ex.: nome.sobrenome###@gmail.com) e domínios/locais suspeitos.</li>
+          <li><strong>Análise temporal:</strong> séries diárias (volume, e-mails únicos, duplicatas) para identificar picos anormais.</li>
+          <li><strong>Distribuição e concentração:</strong> participação por candidato e correlação “padrão de email × candidato”.</li>
+          <li><strong>Análise de sensibilidade (cenários):</strong> comparar rankings sob filtros distintos (A/B/C) para testar robustez do resultado.</li>
+        </ul>
+
+        <p class="muted">
+          Nota de privacidade: esta página foi projetada para ser pública sem expor emails individuais.
+          Dados brutos devem ficar fora do repositório (ex.: em <code>data/private/</code> com <code>.gitignore</code>).
+        </p>
+      </div>
+    </section>
+
+    <section id="resultados">
+      <h2>Resultados</h2>
+      <div class="panel">
+        <div class="row">
+          <label for="scenario">Cenário:</label>
+          <select id="scenario">
+            <option value="A_regras_do_usuario">A — regras do organizador</option>
+            <option value="B_remove_padrao_nome_sobrenome_3dig_gmail">B — remove padrão suspeito</option>
+            <option value="C_conservador">C — conservador</option>
+          </select>
+        </div>
+
+        <div class="grid two">
+          <div>
+            <h3>Ranking (Top 12)</h3>
+            <table class="table" id="rankingTable">
+              <thead>
+                <tr><th>Noel</th><th>Votos</th><th>%</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <div>
+            <h3>Participação</h3>
+            <div id="pieScenario" class="chart"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="anomalias">
+      <h2>Anomalias e suspeitas</h2>
+      <div class="panel">
+        <div class="grid two">
+          <div>
+            <h3>Volume diário vs. e-mails únicos</h3>
+            <div id="chartDailyVolume" class="chart"></div>
+          </div>
+          <div>
+            <h3>Participação diária (indicadores)</h3>
+            <div id="chartDailyShares" class="chart"></div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Como ler estes gráficos:</strong>
+          picos de submissões + baixa diversidade de e-mails únicos + concentração extrema em um candidato
+          são sinais típicos de abuso automatizado em formulários.
+        </div>
+      </div>
+    </section>
+
+    <section id="recomendacoes">
+      <h2>Recomendações para futuras votações</h2>
+      <div class="panel">
+        <ul>
+          <li><strong>Verificação de e-mail</strong> (double opt-in) ou login obrigatório.</li>
+          <li><strong>Rate limiting</strong> por IP / fingerprint e janela de tempo; bloquear rajadas.</li>
+          <li><strong>CAPTCHA</strong> apenas como camada extra (não como única defesa).</li>
+          <li><strong>Normalização de Gmail</strong> (remover pontos e tratar “+tag”) antes do dedupe.</li>
+          <li><strong>Logs mínimos</strong> (IP, user-agent, tempo de preenchimento) para auditoria.</li>
+          <li><strong>Auditoria por cenários</strong> como parte oficial do regulamento (transparência).</li>
+        </ul>
+        <p class="muted">Ver também: OWASP Automated Threats (skewing) e guias de bot traffic para sinais de abuso.</p>
+      </div>
+    </section>
+
+    <footer class="container footer">
+      <p>Feito para GitHub Pages. Código e metodologia no repositório.</p>
+    </footer>
+  </main>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

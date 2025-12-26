@@ -1,0 +1,383 @@
+{
+  "title": "Auditoria de Votação — Oscar Noel RJ 2025",
+  "generated_at": "2025-12-26T13:19:20",
+  "rules": {
+    "exclude_days": [
+      "2025-12-20",
+      "2025-12-21",
+      "2025-12-22"
+    ],
+    "dedupe_email_exact": true,
+    "bot_patterns": [
+      {
+        "id": "regex_nome_sobrenome_3dig_gmail",
+        "pattern": "^[a-z]+(?:\\.[a-z]+)+\\d{3}@gmail\\.com$",
+        "action": "remover (cenário B/C)"
+      }
+    ]
+  },
+  "key_findings": [
+    "Um padrão massivo de emails do tipo nome.sobrenome###@gmail.com concentrou votos em um único candidato.",
+    "A deduplicação por email elimina spam repetido, mas não bloqueia identidades sintéticas com emails diferentes.",
+    "O vencedor muda completamente ao remover o padrão mais suspeito."
+  ],
+  "scenarios": {
+    "A_regras_do_usuario": {
+      "total": 4567,
+      "top": [
+        {
+          "name": "MÁRIO ROQUE - SHOPPING METROPOLITANO BARRA",
+          "votes": 1858,
+          "share": 0.4068316181300635
+        },
+        {
+          "name": "MARCUS SOUZA - PÁTIO ALCANTRA",
+          "votes": 946,
+          "share": 0.20713816509743815
+        },
+        {
+          "name": "CÉSAR FERNANDO - SIDER SHOPPING",
+          "votes": 821,
+          "share": 0.17976790015327349
+        },
+        {
+          "name": "PEDRO LAZARY - BOTAFOGO PRAIA SHOPPING",
+          "votes": 235,
+          "share": 0.05145609809502956
+        },
+        {
+          "name": "ANDRÉ LUIZ - PLAZA SHOPPING",
+          "votes": 198,
+          "share": 0.04335449967155682
+        },
+        {
+          "name": "SAYMON CLAUS - SHOPPING TIJUCA",
+          "votes": 184,
+          "share": 0.04028902999781038
+        },
+        {
+          "name": "PAULO TAVARES - SHOPPING NOVA AMÉRICA",
+          "votes": 132,
+          "share": 0.02890299978103788
+        },
+        {
+          "name": "RONALDO LOPES - NORTE SHOPPING",
+          "votes": 56,
+          "share": 0.012261878694985767
+        },
+        {
+          "name": "CLAUDIO AUGUSTO SCULLER - RIO SUL",
+          "votes": 47,
+          "share": 0.010291219619005912
+        },
+        {
+          "name": "LUIZ AGOSTINHO - AMÉRICAS SHOPPING",
+          "votes": 33,
+          "share": 0.00722574994525947
+        },
+        {
+          "name": "SAYMON - SHOPPING TIJUCA",
+          "votes": 27,
+          "share": 0.005911977227939566
+        },
+        {
+          "name": "ANDRÉ MARIA - SHOPPING RECREIO",
+          "votes": 20,
+          "share": 0.004379242391066345
+        }
+      ]
+    },
+    "B_remove_padrao_nome_sobrenome_3dig_gmail": {
+      "total": 2982,
+      "top": [
+        {
+          "name": "MARCUS SOUZA - PÁTIO ALCANTRA",
+          "votes": 944,
+          "share": 0.3165660630449363
+        },
+        {
+          "name": "CÉSAR FERNANDO - SIDER SHOPPING",
+          "votes": 820,
+          "share": 0.2749832327297116
+        },
+        {
+          "name": "MÁRIO ROQUE - SHOPPING METROPOLITANO BARRA",
+          "votes": 277,
+          "share": 0.09289067739771965
+        },
+        {
+          "name": "PEDRO LAZARY - BOTAFOGO PRAIA SHOPPING",
+          "votes": 234,
+          "share": 0.07847082494969819
+        },
+        {
+          "name": "ANDRÉ LUIZ - PLAZA SHOPPING",
+          "votes": 198,
+          "share": 0.06639839034205232
+        },
+        {
+          "name": "SAYMON CLAUS - SHOPPING TIJUCA",
+          "votes": 184,
+          "share": 0.06170355466130114
+        },
+        {
+          "name": "PAULO TAVARES - SHOPPING NOVA AMÉRICA",
+          "votes": 132,
+          "share": 0.04426559356136821
+        },
+        {
+          "name": "RONALDO LOPES - NORTE SHOPPING",
+          "votes": 56,
+          "share": 0.018779342723004695
+        },
+        {
+          "name": "CLAUDIO AUGUSTO SCULLER - RIO SUL",
+          "votes": 47,
+          "share": 0.015761234071093227
+        },
+        {
+          "name": "LUIZ AGOSTINHO - AMÉRICAS SHOPPING",
+          "votes": 33,
+          "share": 0.011066398390342052
+        },
+        {
+          "name": "SAYMON - SHOPPING TIJUCA",
+          "votes": 27,
+          "share": 0.009054325955734407
+        },
+        {
+          "name": "ANDRÉ MARIA - SHOPPING RECREIO",
+          "votes": 20,
+          "share": 0.00670690811535882
+        }
+      ]
+    },
+    "C_conservador": {
+      "total": 2855,
+      "top": [
+        {
+          "name": "MARCUS SOUZA - PÁTIO ALCANTRA",
+          "votes": 889,
+          "share": 0.31138353765323995
+        },
+        {
+          "name": "CÉSAR FERNANDO - SIDER SHOPPING",
+          "votes": 792,
+          "share": 0.2774080560420315
+        },
+        {
+          "name": "MÁRIO ROQUE - SHOPPING METROPOLITANO BARRA",
+          "votes": 274,
+          "share": 0.09597197898423818
+        },
+        {
+          "name": "PEDRO LAZARY - BOTAFOGO PRAIA SHOPPING",
+          "votes": 229,
+          "share": 0.08021015761821366
+        },
+        {
+          "name": "ANDRÉ LUIZ - PLAZA SHOPPING",
+          "votes": 184,
+          "share": 0.06444833625218914
+        },
+        {
+          "name": "SAYMON CLAUS - SHOPPING TIJUCA",
+          "votes": 175,
+          "share": 0.06129597197898424
+        },
+        {
+          "name": "PAULO TAVARES - SHOPPING NOVA AMÉRICA",
+          "votes": 130,
+          "share": 0.04553415061295972
+        },
+        {
+          "name": "RONALDO LOPES - NORTE SHOPPING",
+          "votes": 54,
+          "share": 0.018914185639229423
+        },
+        {
+          "name": "CLAUDIO AUGUSTO SCULLER - RIO SUL",
+          "votes": 44,
+          "share": 0.015411558669001752
+        },
+        {
+          "name": "LUIZ AGOSTINHO - AMÉRICAS SHOPPING",
+          "votes": 29,
+          "share": 0.010157618213660246
+        },
+        {
+          "name": "SAYMON - SHOPPING TIJUCA",
+          "votes": 25,
+          "share": 0.008756567425569177
+        },
+        {
+          "name": "ANDRÉ MARIA - SHOPPING RECREIO",
+          "votes": 20,
+          "share": 0.0070052539404553416
+        }
+      ]
+    }
+  },
+  "daily": [
+    {
+      "date": "2025-12-11",
+      "submissions": 684,
+      "unique_emails": 533,
+      "duplicates": 151,
+      "mario_votes": 16,
+      "mario_share": 0.023391812865497,
+      "pattern_votes": 2,
+      "pattern_share": 0.0029239766081871
+    },
+    {
+      "date": "2025-12-12",
+      "submissions": 573,
+      "unique_emails": 385,
+      "duplicates": 188,
+      "mario_votes": 14,
+      "mario_share": 0.0244328097731239,
+      "pattern_votes": 2,
+      "pattern_share": 0.0034904013961605
+    },
+    {
+      "date": "2025-12-13",
+      "submissions": 507,
+      "unique_emails": 386,
+      "duplicates": 121,
+      "mario_votes": 6,
+      "mario_share": 0.0118343195266272,
+      "pattern_votes": 0,
+      "pattern_share": 0.0
+    },
+    {
+      "date": "2025-12-14",
+      "submissions": 400,
+      "unique_emails": 267,
+      "duplicates": 133,
+      "mario_votes": 14,
+      "mario_share": 0.035,
+      "pattern_votes": 0,
+      "pattern_share": 0.0
+    },
+    {
+      "date": "2025-12-15",
+      "submissions": 415,
+      "unique_emails": 250,
+      "duplicates": 165,
+      "mario_votes": 13,
+      "mario_share": 0.0313253012048192,
+      "pattern_votes": 0,
+      "pattern_share": 0.0
+    },
+    {
+      "date": "2025-12-16",
+      "submissions": 245,
+      "unique_emails": 193,
+      "duplicates": 52,
+      "mario_votes": 15,
+      "mario_share": 0.0612244897959183,
+      "pattern_votes": 0,
+      "pattern_share": 0.0
+    },
+    {
+      "date": "2025-12-17",
+      "submissions": 216,
+      "unique_emails": 187,
+      "duplicates": 29,
+      "mario_votes": 15,
+      "mario_share": 0.0694444444444444,
+      "pattern_votes": 1,
+      "pattern_share": 0.0046296296296296
+    },
+    {
+      "date": "2025-12-18",
+      "submissions": 901,
+      "unique_emails": 661,
+      "duplicates": 240,
+      "mario_votes": 436,
+      "mario_share": 0.4839067702552719,
+      "pattern_votes": 367,
+      "pattern_share": 0.4073251942286348
+    },
+    {
+      "date": "2025-12-19",
+      "submissions": 1926,
+      "unique_emails": 1675,
+      "duplicates": 251,
+      "mario_votes": 1391,
+      "mario_share": 0.7222222222222222,
+      "pattern_votes": 1235,
+      "pattern_share": 0.6412253374870197
+    },
+    {
+      "date": "2025-12-20",
+      "submissions": 2486,
+      "unique_emails": 2198,
+      "duplicates": 288,
+      "mario_votes": 1949,
+      "mario_share": 0.7839903459372486,
+      "pattern_votes": 1758,
+      "pattern_share": 0.7071600965406275
+    },
+    {
+      "date": "2025-12-21",
+      "submissions": 3668,
+      "unique_emails": 3545,
+      "duplicates": 123,
+      "mario_votes": 3445,
+      "mario_share": 0.9392039258451472,
+      "pattern_votes": 3094,
+      "pattern_share": 0.8435114503816794
+    },
+    {
+      "date": "2025-12-22",
+      "submissions": 2623,
+      "unique_emails": 2435,
+      "duplicates": 188,
+      "mario_votes": 2355,
+      "mario_share": 0.8978269157453298,
+      "pattern_votes": 2118,
+      "pattern_share": 0.8074723598932521
+    },
+    {
+      "date": "2025-12-23",
+      "submissions": 94,
+      "unique_emails": 94,
+      "duplicates": 0,
+      "mario_votes": 1,
+      "mario_share": 0.0106382978723404,
+      "pattern_votes": 0,
+      "pattern_share": 0.0
+    },
+    {
+      "date": "2025-12-24",
+      "submissions": 42,
+      "unique_emails": 42,
+      "duplicates": 0,
+      "mario_votes": 2,
+      "mario_share": 0.0476190476190476,
+      "pattern_votes": 0,
+      "pattern_share": 0.0
+    },
+    {
+      "date": "2025-12-25",
+      "submissions": 8,
+      "unique_emails": 8,
+      "duplicates": 0,
+      "mario_votes": 0,
+      "mario_share": 0.0,
+      "pattern_votes": 0,
+      "pattern_share": 0.0
+    },
+    {
+      "date": "2025-12-26",
+      "submissions": 2,
+      "unique_emails": 2,
+      "duplicates": 0,
+      "mario_votes": 0,
+      "mario_share": 0.0,
+      "pattern_votes": 0,
+      "pattern_share": 0.0
+    }
+  ]
+}
